@@ -1,0 +1,8 @@
+streamlit
+pydantic
+ruamel.yaml
+opencv-python
+imutils
+easyocr==1.7.1
+torch
+torchvision

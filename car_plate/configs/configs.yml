@@ -1,0 +1,14 @@
+car_parts:
+  weights_path: 'data/unet_car_parts/UNet_Model.pth'
+  classes: 21
+  encoder_weights: 'imagenet'
+  path_to_metafile: 'data/unet_cat_parts/meta.json'
+  size: 320
+  iter_frame: 20
+
+damage_parts:
+  weights_path: 'data/unet_car_damages/UNet_Model.pth'
+  classes: 8
+  encoder_weights: 'imagenet'
+  path_to_metafile: 'data/unet_car_damages/meta.json'
+  size: 640
