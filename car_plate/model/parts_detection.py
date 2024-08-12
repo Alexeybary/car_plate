@@ -35,7 +35,12 @@ class UnetParts:
                 flag = True
                 break
         if not flag:
-            return 0, ''
+            results = self.ocr_plate(img, full = False)
+            if results:
+                texts = [len(text[1]) for text in results]
+                return [[a] for a in results[texts.index(max(texts))][0]], results[texts.index(max(texts))][1]
+            else:
+                return 0, ''
         mask = np.zeros(gray.shape, np.uint8)
         cv2.drawContours(mask, [location], 0, 255, -1)
         (x, y) = np.where(mask == 255)
@@ -49,7 +54,7 @@ class UnetParts:
         # res = cv2.rectangle(img, tuple(approx[0][0]), tuple(approx[2][0]), (0,255, 0), 3)
         return location, text
 
-    def ocr_plate(self, cropped_image):
+    def ocr_plate(self, cropped_image, full=True):
         # ocr_model = PaddleOCR(lang='en', use_angle_cls=True, use_gpu=True)
         # result = ocr_model.ocr(img_path)
         # print(result)
@@ -57,18 +62,19 @@ class UnetParts:
         bboxs = []
         cropped_image = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2GRAY)
         # _, cropped_image = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
-        results = self.ocr_model.readtext(
-            cropped_image
-        )  # reader.recognize sadece recognize, text detection yok
-        y, x = cropped_image.shape
-        center = y // 2
-        # center_x = x // 2
-        for (bbox, text, prob) in results:
-            # and bbox[0][0] < center_x < bbox[1][0]
-            if bbox[1][1] < center < bbox[2][1]:
-                bboxs.append(bbox)
-                texts.append(text)
-        return ' '.join(texts)
+        results = self.ocr_model.readtext(cropped_image)  # reader.recognize sadece recognize, text detection yok
+        if full:
+            y, x = cropped_image.shape
+            center = y // 2
+            # center_x = x // 2
+            for (bbox, text, prob) in results:
+                # and bbox[0][0] < center_x < bbox[1][0]
+                if bbox[1][1] < center < bbox[2][1]:
+                    bboxs.append(bbox)
+                    texts.append(text)
+            return ' '.join(texts)
+        else:
+            return results
 
     def draw_plates(self, result, approx, text):
         font = cv2.FONT_HERSHEY_SIMPLEX
@@ -89,7 +95,7 @@ class UnetParts:
             cv2.imwrite('temp.png', img)
             image = Image.open('temp.png')
             st.image(image)
-            st.write('Finished')
+            st.write(f'PLATE: {text}')
         else:
             st.write('PLATE NOT FOUND')
 
