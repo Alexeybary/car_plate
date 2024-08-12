@@ -1,8 +1,6 @@
 streamlit
 pydantic
 ruamel.yaml
-opencv-python
+opencv-python-headless
 imutils
-easyocr==1.7.1
-torch
-torchvision
+easyocr @ git+https://github.com/JaidedAI/EasyOCR
