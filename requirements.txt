@@ -3,6 +3,4 @@ pydantic
 ruamel.yaml
 opencv-python-headless
 imutils
-easyocr
-torch
-torchvision
+easyocr @ git+https://github.com/JaidedAI/EasyOCR
