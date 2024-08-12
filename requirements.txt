@@ -1,7 +1,7 @@
 streamlit
 pydantic
 ruamel.yaml
-opencv-python
+opencv-headless
 imutils
 easyocr
 torch
