@@ -14,9 +14,9 @@ if logged_in:
             'Upload image with car (BETA)',
         ]
     )
-    if mode == 'Upload image with car':
+    if mode == 'Upload image with car (BETA)':
         app.upload_video()
         app.process_video()
-    if mode =='Upload licence plate':
+    if mode =='Upload ONLY licence plate':
         app.upload_video_plate()
         app.process_plate_only()

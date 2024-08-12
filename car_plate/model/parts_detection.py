@@ -11,7 +11,7 @@ from car_plate.configs.configs import CarPartsConfigs, DamageConfigs
 class UnetParts:
     def __init__(self, configs: CarPartsConfigs, damage_configs: DamageConfigs):
         self.configs = configs
-        self.ocr_model = easyocr.Reader(['en'], gpu=False)
+        self.ocr_model = easyocr.Reader(['en'], gpu=False,user_network_directory='model')
 
 
 
