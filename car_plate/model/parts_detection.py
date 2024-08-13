@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image
 from easyocr import easyocr
 import streamlit as st
-import os.path
+from datetime import datetime
 from car_plate.configs.configs import CarPartsConfigs, DamageConfigs
 
 class UnetParts:
@@ -96,8 +96,13 @@ class UnetParts:
             image = Image.open('temp.png')
             st.image(image)
             st.write(f'PLATE: {text}')
+            print(f'PLATE: {text}')
         else:
             st.write('PLATE NOT FOUND')
+            print('PLATE NOT FOUND')
+        now = datetime.now()
+        print('full_image')
+        print(now)
 
     def recognize_plate_only(self, file_path):
         st.write('Plate recognition starts')
@@ -107,7 +112,13 @@ class UnetParts:
         st.image(image)
         if text:
             st.write(f'PLATE: {text}')
+            print(f'PLATE: {text}')
         else:
             st.write('PLATE NOT FOUND')
+            print('PLATE NOT FOUND')
+        # datetime object containing current date and time
+        now = datetime.now()
+        print('plate_only')
+        print(now)
 
 
