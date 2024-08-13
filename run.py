@@ -11,7 +11,6 @@ if logged_in:
         label='Select task',
         options=[
             'Upload ONLY licence plate',
-            'Upload image with car (BETA)',
         ]
     )
     if mode == 'Upload image with car (BETA)':

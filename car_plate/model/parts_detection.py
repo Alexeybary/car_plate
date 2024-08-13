@@ -61,6 +61,17 @@ class UnetParts:
         texts = []
         bboxs = []
         cropped_image = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2GRAY)
+        new_y, new_x = cropped_image.shape
+        is_new_y = False
+        is_new_x = False
+        if cropped_image.shape[0] > 200:
+            new_y = 128
+            is_new_y = True
+        if cropped_image.shape[1] > 350:
+            new_x = 224
+            is_new_x = True
+        if is_new_y or is_new_x:
+            cropped_image= cv2.resize(cropped_image, (new_x,new_y))
         # _, cropped_image = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
         results = self.ocr_model.readtext(cropped_image)  # reader.recognize sadece recognize, text detection yok
         if full:
