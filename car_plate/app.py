@@ -63,13 +63,13 @@ def upload_video_plate():
 def process_video():
     video_path= ss.get('file_path')
     if ss.get('uploading'):
-        if st.button('Process video', type='primary'):
-            with st.spinner('Processing video'):
+        if st.button('Process image', type='primary'):
+            with st.spinner('Processing image'):
                 ocr_recognition.upload_video(video_path)
 def process_plate_only():
     video_path = ss.get('file_path2')
     if ss.get('uploading2'):
-        if st.button('Process video2', type='primary'):
-            with st.spinner('Processing video2'):
+        if st.button('Process plate', type='primary'):
+            with st.spinner('Processing plate'):
                 ocr_recognition.recognize_plate_only(video_path)
 
