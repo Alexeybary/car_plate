@@ -72,4 +72,3 @@ def process_plate_only():
         if st.button('Process plate', type='primary'):
             with st.spinner('Processing plate'):
                 ocr_recognition.recognize_plate_only(video_path)
-

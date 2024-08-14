@@ -119,6 +119,9 @@ class UnetParts:
         st.write('Plate recognition starts')
         img = cv2.imread(file_path)
         text = self.ocr_plate(img)
+        import re
+        text = re.sub('''[>~€&\[#<(":_;,?{+@$)^|`.*\/=!%}\]\']''', '', text)
+        text = text.upper()
         image = Image.open(file_path)
         st.image(image)
         if text:
