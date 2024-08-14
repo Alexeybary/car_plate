@@ -2,7 +2,7 @@ import streamlit as st
 
 import car_plate.app as app
 
-st.set_page_config(page_title='Car Damage Detection')
+st.set_page_config(page_title='Car Plate Recognition')
 
 
 logged_in = app.check_password()
